@@ -1,59 +1,58 @@
 {% extends "base.html" %}
 {% block title %} Home {% endblock title %}
+<link rel="stylesheet" href="{{ url_for('static', filename="css/styles.css") }}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 {% block body %}
+<div class="container">
+    <h2>Your Todos</h2>
+    <a href="/add_todo" class="btn btn-outline-dark btn-sm mx-1 add-btn">
+        <i class="fas fa-plus"></i> Add
+    </a>
 
-    <div class="container">
-        <form action="/add_todo" method="POST">
-            <div class="mb-3">
-              <label for="title" class="form-label">Title</label>
-              <input type="text" class="form-control" name="title" id="title" required>
-            </div>
-            <div class="mb-3">
-              <label for="desc" class="form-label">Description</label>
-              <input type="text" class="form-control" name="desc" id="desc" required>
-            </div>
-            
-            <button type="submit" class="btn btn-dark">Submit</button>
-          </form>
-    </div>
-
-    <div class="container">
-        <h2>Your Todos</h2>
-        <table class="table">
-       
-                {% if todos|length == 0 %}
-                <div class="alert alert-dark my-2" role="alert">                   
-                     No Todos Found! Add your todos now               
-                 </div>
-                    {% else %}
-                    {% for todo in todos %}
-                    <thead>
-                        <tr>
-                          <th scope="col">Id</th>
-                          <th scope="col">Title</th>
-                          <th scope="col">Description</th>
-                          <th scope="col">Date Created</th>
-                          <th scope="col">Action</th>
-          
-                        </tr>
-                      </thead>
-                      <tbody> 
-              <tr>
-                <th scope="row">{{loop.index}}</th>
-                <td>{{todo.title}}</td>
-                <td>{{todo.desc}}</td>
-                <td>{{todo.date_created}}</td>
-                <td><a href="delete/{{todo.id}}"><button  class="btn btn-outline-dark btn-sm mx-1">Delete</button></a>
-                    <a href="update/{{todo.id}}"><button  class="btn btn-outline-dark btn-sm mx-1">Update</button></a></td>
-              </tr>
-           
-            </tbody>
-        </table>
-
+    <table class="table">
+        {% if todos|length == 0 %}
+        <div class="alert alert-dark my-2" role="alert">
+            No Todos Found! Add your todos now
+        </div>
+        {% else %}
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date Created</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for todo in todos %}
+            <tr class="{% if todo.completed %}completed{% endif %}">
+                <td>
+                    <form method="post" action="/toggle_complete/{{ todo.id }}">
+                        <input type="checkbox" name="completed" onchange="this.form.submit()"
+                            {% if todo.completed %} checked {% endif %}>
+                    </form>
+                </td>
+                <th scope="row">{{ loop.index }}</th>
+                <td>{{ todo.title }}</td>
+                <td>{{ todo.desc }}</td>
+                <td>{{ todo.date_created }}</td>
+                <td>
+                    <a href="delete/{{ todo.id }}" class="delete-btn">
+                        <button class="btn btn-outline-dark btn-sm mx-1">
+                            <i class="fas fa-times"></i> Delete
+                        </button>
+                    </a>
+                    <a href="update/{{ todo.id }}">
+                        <button class="btn btn-outline-dark btn-sm mx-1">Update</button>
+                    </a>
+                </td>
+            </tr>
             {% endfor %}
-                 
-            {% endif %}
-    </div>
+        </tbody>
+        {% endif %}
+    </table>
+</div>
 {% endblock body %}
-  

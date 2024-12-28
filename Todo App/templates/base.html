@@ -7,6 +7,8 @@
         {% block title %} {% endblock title %}
 - MyTodo</title>
 <link rel="stylesheet" href="{{ url_for('static', filename="css/styles.css") }}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,9 +34,9 @@
                         </li>
                         
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-dark" type="submit">Search</button>
+                    <form class="d-flex" role="search" action="search">
+                        <input class="form-control me-2" type="search" name="que" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-dark" type="submit" class="search-btn"> <i class="fas fa-search"></i>Search</button>
                     </form>
                 </div>
             </div>

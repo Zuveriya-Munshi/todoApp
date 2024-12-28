@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %} Search {% endblock title %}
+
+{% block body %}
+<div class="container">
+    <h2>Search Results</h2>
+    <table class="table">
+        {% if results|length == 0 %}
+        <div class="alert alert-dark my-2" role="alert">                   
+            No Todos Found!               
+        </div>
+        {% else %}
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date Created</th>
+                <th scope="col">Action</th>
+
+              </tr>
+            </thead>
+            <tbody> 
+          {% for result in results %}
+
+    <tr>
+      <th scope="row">{{loop.index}}</th>
+      <td>{{result.title}}</td>
+      <td>{{result.desc}}</td>
+      <td>{{result.date_created}}</td>
+
+    </tr>
+    {% endfor %}
+ 
+  </tbody>
+       
+  {% endif %}
+</table>
+
+</div>
+{% endblock body %}
+

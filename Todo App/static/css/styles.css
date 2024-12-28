@@ -1,3 +1,65 @@
+/* static/css/styles.css */
 body{
     background-color: red;
+}
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+/* Animation for buttons */
+.add-btn, .delete-btn button {
+    position: relative;
+    padding-left: 30px; /* Add space for the icon */
+    transition: all 0.3s ease-in-out;
+}
+
+.add-btn i, .delete-btn i {
+    position: absolute;
+    left: 6px; /* Position the icon */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px; /* Icon size */
+}
+
+.add-btn:hover, .delete-btn button:hover {
+    transform: scale(1.1); /* Scale the button on hover */
+}
+
+.add-btn {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+    width: 70px;
+}
+
+.delete-btn button {
+    background-color: white;
+    border-color: black;
+    color: black;
+}
+
+.add-btn:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.delete-btn button:hover {
+    background-color: blacks;
+    border-color: #f0f0f0;
+}
+
+/* Add animation on Delete */
+.delete-btn button {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
 }
