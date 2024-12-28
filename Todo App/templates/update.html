@@ -1,0 +1,22 @@
+{% extends "base.html" %}     
+{% block title %} Update {% endblock title %}
+{% block body %} 
+<div class="container my-3">
+
+<h2>Update Todo</h2>
+
+       <div class="container">
+        <form action="/update/{{data.id}}" method="POST">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" placeholder"Enter todo Title" name="title" value="{{data.title}}" id="title" class="form-control"  />
+
+            <label for="desc" class="form-label">Description</label>
+            <input type="text" placeholder"Enter todo Description" name="desc" id="desc" value="{{data.desc}}" class="form-control" />
+
+            <button type="submit" class="btn btn-dark my-3" value="Update" name="Update"> Update </button>
+        </form>
+       </div>
+    </div>
+        <script src="" async defer></script>
+    </body>
+{% endblock body %}
